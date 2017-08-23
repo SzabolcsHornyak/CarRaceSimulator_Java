@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -84,15 +87,58 @@ public class Main {
 
     // prints each vehicle's name, distance traveled ant type.
     public static void printRaceResults() {
-        System.out.printf("%-8s %-20s %-6s \n","Type", "Name", "Distance\n");
+        System.out.println("---------> CAR RACE RESULST <---------");
+        System.out.printf("%-8s %-20s %-6s \n","Rank", "Name", "Distance");
+        List<ArrayList<String>> carResults = new ArrayList();
         for (Car actcar : cars) {
-            System.out.printf("%-8s %-20s %-6s \n","CAR", actcar.name, actcar.distanceTraveled + " km");
+            ArrayList<String> carInstance = new ArrayList<>();
+            carInstance.add(actcar.name);
+            carInstance.add(actcar.distanceTraveled.toString());
+            carResults.add(carInstance);
+            }
+        carResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
+        Collections.reverse(carResults);
+
+        int rank=1;
+        for (List result : carResults) {
+            System.out.printf("%-8s %-20s %-6s\n",rank, result.get(0), result.get(1) + " km");
+            rank += 1;
         }
+
+        System.out.println("\n\n--------> TRUCK RACE RESULST <--------");
+        System.out.printf("%-8s %-20s %-6s \n","Rank", "Name", "Distance");
+        List<ArrayList<String>> truckResults = new ArrayList();
         for (Truck actcar : trucks) {
-            System.out.printf("%-8s %-20s %-6s \n","TRUCK", actcar.name, actcar.distanceTraveled + " km");
+            ArrayList<String> truckInstance = new ArrayList<>();
+            truckInstance.add(actcar.name);
+            truckInstance.add(actcar.distanceTraveled.toString());
+            truckResults.add(truckInstance);
         }
+        truckResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
+        Collections.reverse(truckResults);
+
+        rank=1;
+        for (List result : truckResults) {
+            System.out.printf("%-8s %-20s %-6s\n",rank, result.get(0), result.get(1) + " km");
+            rank += 1;
+        }
+
+        System.out.println("\n\n--------> MBIKE RACE RESULST <--------");
+        System.out.printf("%-8s %-20s %-6s \n","Rank", "Name", "Distance");
+        List<ArrayList<String>> mbikeResults = new ArrayList();
         for (Motorcycle actcar : motorcycles) {
-            System.out.printf("%-8s %-20s %-6s \n","MBIKE", actcar.name, actcar.distanceTraveled + " km");
+            ArrayList<String> mbikeInstance = new ArrayList<>();
+            mbikeInstance.add(actcar.name);
+            mbikeInstance.add(actcar.distanceTraveled.toString());
+            mbikeResults.add(mbikeInstance);
+        }
+        mbikeResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
+        Collections.reverse(mbikeResults);
+
+        rank=1;
+        for (List result : mbikeResults) {
+            System.out.printf("%-8s %-20s %-6s\n",rank, result.get(0), result.get(1) + " km");
+            rank += 1;
         }
     }
 
