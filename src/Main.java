@@ -87,6 +87,8 @@ public class Main {
 
     // prints each vehicle's name, distance traveled ant type.
     public static void printRaceResults() {
+        List<ArrayList<String>> overallResults = new ArrayList();
+
         System.out.println("---------> CAR RACE RESULST <---------");
         System.out.printf("%-8s %-20s %-6s \n","Rank", "Name", "Distance");
         List<ArrayList<String>> carResults = new ArrayList();
@@ -94,7 +96,9 @@ public class Main {
             ArrayList<String> carInstance = new ArrayList<>();
             carInstance.add(actcar.name);
             carInstance.add(actcar.distanceTraveled.toString());
+            carInstance.add("CAR");
             carResults.add(carInstance);
+            overallResults.add(carInstance);
             }
         carResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
         Collections.reverse(carResults);
@@ -112,7 +116,9 @@ public class Main {
             ArrayList<String> truckInstance = new ArrayList<>();
             truckInstance.add(actcar.name);
             truckInstance.add(actcar.distanceTraveled.toString());
+            truckInstance.add("TRUCK");
             truckResults.add(truckInstance);
+            overallResults.add(truckInstance);
         }
         truckResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
         Collections.reverse(truckResults);
@@ -130,7 +136,9 @@ public class Main {
             ArrayList<String> mbikeInstance = new ArrayList<>();
             mbikeInstance.add(actcar.name);
             mbikeInstance.add(actcar.distanceTraveled.toString());
+            mbikeInstance.add("BIKE");
             mbikeResults.add(mbikeInstance);
+            overallResults.add(mbikeInstance);
         }
         mbikeResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
         Collections.reverse(mbikeResults);
@@ -138,6 +146,17 @@ public class Main {
         rank=1;
         for (List result : mbikeResults) {
             System.out.printf("%-8s %-20s %-6s\n",rank, result.get(0), result.get(1) + " km");
+            rank += 1;
+        }
+
+        System.out.println("\n\n-----------> OVERALL RACE RESULST <-----------");
+        System.out.printf("%-8s %-20s %-10s %-10s\n","Rank", "Name", "Distance","Type");
+        overallResults.sort((p1, p2) -> (new Integer(p1.get(1)).compareTo(new Integer(p2.get(1)))));
+        Collections.reverse(overallResults);
+
+        rank=1;
+        for (List result : overallResults) {
+            System.out.printf("%-8s %-20s %-10s %-10s\n",rank, result.get(0), result.get(1) + " km", result.get(2));
             rank += 1;
         }
     }
